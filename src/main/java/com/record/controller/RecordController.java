@@ -1,0 +1,28 @@
+package com.record.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+
+import com.record.entity.Records;
+import com.record.service.IRecordService;
+
+@RestController
+@RequestMapping("/record")
+public class RecordController {
+	@Autowired
+	private IRecordService recordservice;
+	
+	
+	
+	@GetMapping("/emp/{eId}")
+	public List<Records> getRecord(@PathVariable("eId") Long eId){
+		return this.recordservice.getRecordOfEmployee(eId);
+	}
+
+}
